@@ -1,0 +1,68 @@
+/* Styles for small devices (e.g., smartphones) */
+@media (max-width: 768px) {
+   
+  .header{
+    padding: 40px 30px;
+  }
+
+  .header_input {
+    /*display: none; /* Hide search bar for small devices */
+    position:relative;
+    display: flex;
+   align-items:center;
+   background-color: #eff2f5;
+   padding: 5px;
+   margin-left:10px;
+   border-radius:999px;
+   top:-35px;
+    left: 45rem;
+  }
+  .header_center{
+    position: relative;
+    display:flex;
+    flex: 2;
+    justify-content:center;
+    right: 10rem;
+    
+ }
+ .header_right{
+   position: relative;
+   left: -8rem;
+ }
+ .header_info{
+  display: flex;
+  align-items: center;
+}
+.header_info > h4{
+  margin-left: 5px;
+  display: none;
+}
+
+ 
+
+  .header_option{
+    /*display: none; /* Hide center icons for small devices */
+    font-size: small !important ;
+
+   
+  }
+  
+  .header_right {
+    /*display: none; /* Hide right icons for small devices */
+  }
+ 
+}
+
+/* Styles for large devices (e.g., tablets) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .header_input {
+    margin-left: 5px; /* Adjust search bar margin for larger devices */
+  }
+}
+
+/* Styles for extra-large devices (e.g., desktops) */
+@media (min-width: 1025px) {
+  .header_option {
+   /* Increase padding for menu items on larger screens */
+  }
+}
