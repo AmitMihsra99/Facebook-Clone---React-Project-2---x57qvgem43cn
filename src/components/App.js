@@ -8,13 +8,16 @@ import Login from "../Auth/Login";
 import Loginpage from "../Auth/Loginpage";
 import { useSelector } from "react-redux";
 //import store from "../store/Store";
+// {!user?.data && <Loginpage/> }
+
+//   {user?.data &&  
 function App() {
-  const user = useSelector(store => store.user.userDetails);
-
+ // const user = useSelector(store => store.user.userDetails);
+const user=true;
   return <div className="app">
-  {!user?.data && <Loginpage/> }
+  {!user && <Loginpage/> }
 
-  {user?.data &&  
+  {user &&  
     <>
   <Header />
   <div className="app_body">

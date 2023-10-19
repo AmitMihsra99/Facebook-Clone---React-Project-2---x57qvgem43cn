@@ -48,3 +48,19 @@
     background-color: #efefef;
     border-radius: 10px;
 }
+
+
+@media (max-width: 768px) {
+
+    
+        .post{
+            position: relative;
+            width: 90%;
+            margin-top: 15px;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0px 5px 7px -7px rgba(0,0,0,0.75);
+            right: 20%;
+        }
+    
+}

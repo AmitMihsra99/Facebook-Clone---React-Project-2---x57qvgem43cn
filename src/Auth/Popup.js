@@ -1,75 +1,53 @@
 import React, { useState, useEffect } from "react";
 
-
+import { getuser } from "../store/userSlice";
 import "./Popup.css";
+import { useDispatch } from "react-redux";
 
 const Popup = ({ handleClose }) => {
 
-    const [days, setDays] = useState([]);
-    const [months, setMonths] = useState([]);
-    const [years, setYears] = useState([]);
-
-    const [username,setUserName]=useState("");
-    const [email,setEmail]=useState("");
-    const [password,setPassword]=useState("");  
-  
-    useEffect(() => {
-      // Populate days (1 to 31)
-      const daysArray = Array.from({ length: 31 }, (_, index) => index + 1);
-      setDays(daysArray);
-  
-      // Populate months (January to December)
-      const monthsArray = Array.from({ length: 12 }, (_, index) => {
-        const monthNumber = index + 1;
-        return monthNumber < 10 ? `0${monthNumber}` : `${monthNumber}`;
-      });
-      setMonths(monthsArray);
-  
-      // Populate years (current year to 100 years ago)
-      const currentYear = new Date().getFullYear();
-      const yearsArray = Array.from({ length: 100 }, (_, index) => currentYear - index);
-      setYears(yearsArray);
-    }, []);
+  const [uname, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  //const [data, setData] = useState([]);
+  const dispatch = useDispatch([]);
 
 
-    
 
   // ... (same popup content as before)
-/* -------------------------- API Works code-------------------------------- */
-  let headersList={
-    "content-type":"application/json",
-    projectid:"x57qvgem43cn"
-  }
+  /* -------------------------- API Works code-------------------------------- */
 
-  let bodyContent =JSON.stringify({
-    email: email,
-    password: password,
-    appType: 'facebook'
-   }) 
+  async function handleFromData() {
+    let headersList = {
+      "content-type": "application/json",
+      "projectId": "x57qvgem43cn"
+    }
+
+    let bodyContent = JSON.stringify({
+      name: uname,
+      email: email,
+      password: password,
+      appType: 'facebook'
+    })
 
 
-   const apiDataFetch= async()=>{
-    const data=await
-     
-    fetch("https://academics.newtonschool.co/api/v1/user/signup",{
-       method:'POST',
-       body:bodyContent,
-       headers:headersList
-    });
 
-    const json=await data.json();
+    const data = await fetch("https://academics.newtonschool.co/api/v1/user/signup", {
+      method: 'POST',
+      body: bodyContent,
+      headers: headersList
+    }
+    );
+    const json = await data.json();
     console.log(json);
+    dispatch(getuser(json));
+    //console.log(email, password, uname)
     setEmail("");
     setPassword("");
-    setUserName("");
+    setUsername("");
 
-   }
 
-   /* -------------------------- API Works code end -------------------------------- */
-
-   function handleFromData(){
-     apiDataFetch();
-   }
+  }
 
   return (
     <div className="popup">
@@ -77,19 +55,19 @@ const Popup = ({ handleClose }) => {
       <span className="close" onClick={handleClose}>
         &times;
       </span>
-       <div className="head">
-      <h2>Sign Up</h2>
+      <div className="head">
+        <h2>Sign Up</h2>
         <p>It's quick and easy.</p>
-        </div>
-        
-        
-        <div className="input-group">
-          <input className="popup-sel"  type="text" placeholder="First Name" value={username} onChange={(e)=>setUserName(e.target.value)} />
-          <input className="popup-sel" type="email" placeholder="Email"  value={email} onChange={(e)=>setEmail(e.target.value)} />
-          <input className="popup-sel" type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
-        </div>
-        
-        <div className="gender-group">
+      </div>
+
+
+      <div className="input-group">
+        <input className="popup-sel" type="text" placeholder="First Name" value={uname} onChange={(e) => setUsername(e.target.value)} />
+        <input className="popup-sel" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input className="popup-sel" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      </div>
+
+      {/*   <div className="gender-group">
           <h5>Gender</h5>
            <label>
             <input type="radio" name="gender" value="male" />
@@ -131,11 +109,9 @@ const Popup = ({ handleClose }) => {
             </option>
           ))}
         </select>
-        </div>
-      
-        <button className="sign-up-button" onClick={()=>{
-          handleFromData
-        }} >Sign Up</button>
+          </div>*/}
+
+      <button onClick={handleFromData} className="sign-up-button">Sign Up</button>
     </div>
   );
 };

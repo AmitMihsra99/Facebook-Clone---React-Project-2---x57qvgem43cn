@@ -11,7 +11,6 @@ function Feed() {
   const dispatch = useDispatch([]);
   const [posts, setPosts] = useState([]);
 
-
   useEffect(() => {
     async function getPost() {
       var myHeaders = new Headers();
@@ -23,47 +22,42 @@ function Feed() {
         redirect: "follow",
       };
 
-      fetch(
+      const res = await fetch(
         "https://academics.newtonschool.co/api/v1/facebook/post?limit=100",
         requestOptions
-      )
-        .then((response) => response.text())
-        .then((result) => {
-          dispatch(getProduct(result));
-        // console.log(result)
-          setPosts(result)
-        })
-        .catch((error) => console.log("error", error));
-
+      );
+      const data = await res.json();
+      dispatch(getProduct(data.data));
+      // console.log(data.data);
+      setPosts(data.data);
     }
+
     getPost();
-    console.log("kuch v")
   }, []);
 
   return (
     <div className="feed">
       <StoryReel />
       <MessageSender />
-      
-      { Array.isArray(posts.data)&&
-        posts.data.map((item) => {
+
+      {posts &&
+        posts.map((item) => {
           return (
-            <div key={item._id} >
+            <div key={item._id}>
               <Post
-                //data={item}
                 name={item.author.name}
                 profilepic={item.author.profileImage}
                 massage={item.content}
-                image={item.chanel.image}
+                image={item.channel.image}
+                like={item.likeCount}
+                comment={item.commentCount}
               />
             </div>
-          )
-        })
-      }
-
+            
+          );
+        })}
     </div>
   );
 }
 
 export default Feed;
-

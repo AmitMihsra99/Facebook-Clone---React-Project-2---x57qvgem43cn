@@ -91,33 +91,11 @@ body {
 @media (max-width: 768px) {
    
   .header{
-    padding: 40px 30px;
+    width: 80%;
+    padding: 30px 20px;
   }
-
-  .header_input {
-    /*display: none; /* Hide search bar for small devices */
-    position:relative;
-    display: flex;
-   align-items:center;
-   background-color: #eff2f5;
-   padding: 5px;
-   margin-left:10px;
-   border-radius:999px;
-   top:-35px;
-    left: 40rem;
-  }
-  .header_center{
-    position: relative;
-    display:flex;
-    flex: 2;
-    justify-content:center;
-    right: 10rem;
-    
- }
- .header_right{
-   position: relative;
-   left: -8rem;
- }
+  
+ 
  .header_info{
   display: flex;
   align-items: center;
@@ -130,30 +108,58 @@ body {
  
 
   .header_option{
-    /*display: none; /* Hide center icons for small devices */
-    font-size: small !important ;
-  }
-  .header_logicon{
-      position: relative;
-      left: 20rem;
-      top:1rem 
+    display: none; /* Hide center icons for small devices */
+    
   }
   
+  
   .header_right {
-    /*display: none; /* Hide right icons for small devices */
+   /* display: none; /* Hide right icons for small devices */
+      position: relative;
+      right: 15%;
   }
  
 }
 
-@media (max-width: 6px) {
+@media (max-width: 684px) {
+  .header_right {
+    /* display: none; /* Hide right icons for small devices */
+       position: relative;
+       right: 10%;
+   }
 
+}
+@media (max-width: 495px) {
+  .header{
+    padding: 40px 50px;
+
+  }  
+  .header_left{
+    position: relative;
+    right: 12%;
+    margin-top: 2%;
+
+  }
+  .header_input{
+     position: relative; 
+     top: -40px;
+    
+  }
+
+  .header_right {
+    /* display: none; /* Hide right icons for small devices */
+       position: relative;
+       right: 65%;
+       top:15px;  
+   }
+   
 
 }
 
 /* Styles for large devices (e.g., tablets) */
 @media (min-width: 769px) and (max-width: 1024px) {
   .header_input {
-    margin-left: 5px; /* Adjust search bar margin for larger devices */
+    margin-left: 10px; /* Adjust search bar margin for larger devices */
   }
 }
 

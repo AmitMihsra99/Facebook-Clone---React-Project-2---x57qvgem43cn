@@ -1,12 +1,12 @@
-import React from 'react'
-import "../styles/Post.css"
-import { Avatar } from '@mui/material'
-import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import NearMeIcon from '@mui/icons-material/NearMe';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useSelector } from 'react-redux';
+import React from "react";
+import "../styles/Post.css";
+import { Avatar } from "@mui/material";
+import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import NearMeIcon from "@mui/icons-material/NearMe";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useSelector } from "react-redux";
 
 /*
 {
@@ -27,61 +27,54 @@ import { useSelector } from 'react-redux';
 
 */
 //{profilePic,image,username,timestamp,message}
-function Post({image,name,massage,profilepic}) 
-{
-  // {profilePic,username,message}=props.dataitem
-  const product = useSelector(store => store.product.product);
-  console.log("lawda=>");
-  
-  return (
-      <div className='post'>
-        <div className="post__top">
+const Post = ({image, name, massage, profilepic, like,comment }) => {
+//  const { image, name, massage, profilepic } = props.posts;
 
+
+  // {profilePic,username,message}=props.dataitem
+  // const product = useSelector((store) => store.product.product);
+  //console.log("law=>" + image, name, massage, profilepic);
+
+  return (
+    <div className="post">
+      <div className="post__top">
         <Avatar src={profilepic} className="post__avatar" />
         <div className="post__topInfo">
           <h3>{name}</h3>
           <p>{massage}</p>
-
-
         </div>
       </div>
 
-      <div className='post__bottom'>
+      <div className="post__bottom">
         <p>{massage}</p>
       </div>
 
-      <div className='post__image'>
+      <div className="post__image">
         <img src={image} alt=" " />
-
       </div>
 
-      <div className='post__options'>
-        <div className='post__option'>
+      <div className="post__options">
+        <div className="post__option">
           <ThumbUpOutlinedIcon />
-          <p>Like</p>
-
+          <p>{like}</p>
         </div>
 
-        <div className='post__option'>
+        <div className="post__option">
           <ChatBubbleOutlineIcon />
-          <p>Comment</p>
+          <p>{comment}</p>
         </div>
 
-        <div className='post__option'>
+        <div className="post__option">
           <NearMeIcon />
           <p>Share</p>
         </div>
 
-        <div className='post__option'>
+        <div className="post__option">
           <AccountCircleIcon />
           <ExpandMoreIcon />
-
         </div>
       </div>
-
     </div>
-  )
-
-
-}
-export default Post
+  );
+};
+export default Post;

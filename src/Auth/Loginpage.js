@@ -69,6 +69,8 @@ function Loginpage() {
           Facebook helps you connect and share
           <br />
           with the people in your life.
+
+          <h6>Use this for Login email/password  NewtonBaba@123gmail.com or <br></br>if this email is not working then create your Account </h6>
         </div>
       </div>
       <div className="logincontainer">

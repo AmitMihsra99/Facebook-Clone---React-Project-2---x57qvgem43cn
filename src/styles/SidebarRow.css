@@ -17,4 +17,7 @@
     font-size: xx-large ;
     color: blue;
 }
+.sbr-sidebarRow title{
+    display: none;
+}
  
