@@ -4,6 +4,7 @@ import "./Loginpage.css";
 import Popup from "./Popup"; // Import the Popup component
 import { useDispatch } from "react-redux";
 import { getuser } from "../store/userSlice";
+import Updatepassword from "../components/Updatepassword";
 //import { useNavigate } from "react-router-dom";
 //import SignUp from './SignUp';
 
@@ -60,6 +61,14 @@ function Loginpage() {
    // console.log(data);
   }
 
+
+  const [isPopupVisiblepassword, setPopupVisiblepassword] = useState(false);
+
+  const togglePopuppassword = () => {
+    setPopupVisiblepassword(!isPopupVisiblepassword);
+  };
+  
+
   return (
     <div className="login">
       <div className="facebook">
@@ -70,7 +79,7 @@ function Loginpage() {
           <br />
           with the people in your life.
 
-          <h6>Use this for Login email/password  NewtonBaba@123gmail.com or <br></br>if this email is not working then create your Account </h6>
+          <h6>Use this for Login email/password  newton@12gmail.com or <br></br>if this email is not working then create your Account </h6>
         </div>
       </div>
       <div className="logincontainer">
@@ -97,9 +106,13 @@ function Loginpage() {
           </button>
         </div>
 
-        <div className="forget">
-          <a href="forget">Forgot Password ?</a>
-        </div>
+        <div className="forget" onClick={togglePopuppassword}>
+          <a  onClick={togglePopuppassword} >Forgot Password ?</a>
+          </div>
+          {isPopupVisiblepassword && (
+            <Updatepassword onClose={togglePopuppassword} />
+          )}
+        
         <div className="create">
           <br />
           <button className="btns" onClick={togglePopup}>
