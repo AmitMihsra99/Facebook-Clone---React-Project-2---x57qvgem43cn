@@ -46,9 +46,19 @@ function Loginpage() {
         .then((response) => response.json())
         .then((result) => {
           //console.log(result);
+
           setData(result);
           dispatch(getuser(result));
-         
+
+          localStorage.setItem(
+            "fblogin",
+            JSON.stringify({
+              data: {
+                email: result.data.email,
+                name: result.data.name,
+              },
+            })
+          );
         })
         .catch((error) => console.log("error", error));
     } catch (error) {
@@ -58,16 +68,14 @@ function Loginpage() {
 
   function handleLoginFrom() {
     fetchloginData();
-   // console.log(data);
+    // console.log(data);
   }
-
 
   const [isPopupVisiblepassword, setPopupVisiblepassword] = useState(false);
 
   const togglePopuppassword = () => {
     setPopupVisiblepassword(!isPopupVisiblepassword);
   };
-  
 
   return (
     <div className="login">
@@ -78,8 +86,10 @@ function Loginpage() {
           Facebook helps you connect and share
           <br />
           with the people in your life.
-
-          <h6>Use this for Login email/password  newton@12gmail.com or <br></br>if this email is not working then create your Account </h6>
+          <h6>
+            Use this for Login email/password newton@12gmail.com or <br></br>if
+            this email is not working then create your Account{" "}
+          </h6>
         </div>
       </div>
       <div className="logincontainer">
@@ -107,12 +117,12 @@ function Loginpage() {
         </div>
 
         <div className="forget" onClick={togglePopuppassword}>
-          <a  onClick={togglePopuppassword} >Forgot Password ?</a>
-          </div>
-          {isPopupVisiblepassword && (
-            <Updatepassword onClose={togglePopuppassword} />
-          )}
-        
+          <a onClick={togglePopuppassword}>Forgot Password ?</a>
+        </div>
+        {isPopupVisiblepassword && (
+          <Updatepassword onClose={togglePopuppassword} />
+        )}
+
         <div className="create">
           <br />
           <button className="btns" onClick={togglePopup}>

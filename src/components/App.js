@@ -8,16 +8,20 @@ import Widgets from "./Widgets";
 import Loginpage from "../Auth/Loginpage";
 import { useSelector } from "react-redux";
 //import store from "../store/Store";
-// {!user?.data && <Loginpage/> }
 
-//   {user?.data &&  
 function App() {
-  const user = useSelector(store => store.user.userDetails);
-//const user=true;
+  const lUser = localStorage.getItem("fblogin");
+
+  const localUser = JSON.parse(lUser);
+
+   const user = useSelector(store => store.user.userDetails || localUser);
+  //  console.log(user);
+  //  console.log(lUser);
+
   return <div className="app">
    {!user?.data && <Loginpage/> }
 
-   {user?.data &&  
+   {user?.data &&
     <>
     
   <Header />
